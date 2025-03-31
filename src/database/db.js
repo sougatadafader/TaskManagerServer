@@ -14,8 +14,8 @@ db.serialize(() => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT,
-        due_date TEXT,
-        create_date TEXT DEFAULT CURRENT_TIMESTAMP
+        dueDate TEXT,
+        createDate TEXT DEFAULT CURRENT_TIMESTAMP
       )
     `);
   });

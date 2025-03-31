@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Get all tasks
 app.get("/api/tasks", (req, res) => {
-    db.all("SELECT * FROM tasks ORDER BY create_date DESC", [], (err, rows) => {
+    db.all("SELECT * FROM tasks ORDER BY createDate DESC", [], (err, rows) => {
       if (err) {
         res.status(400).json({ error: err.message });
       } else {
@@ -18,12 +18,12 @@ app.get("/api/tasks", (req, res) => {
 
 // Create a new task
 app.post("/api/tasks", (req, res) => {
-    const { title, description, due_date } = req.body;
+    const { title, description, dueDate } = req.body;
   
     // Insert the new task into the database
     db.run(
-      "INSERT INTO tasks (title, description, due_date, create_date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)",
-      [title, description, due_date],
+      "INSERT INTO tasks (title, description, dueDate, createDate) VALUES (?, ?, ?, CURRENT_TIMESTAMP)",
+      [title, description, dueDate],
       function (err) {
         if (err) {
           res.status(400).json({ error: err.message });
@@ -33,8 +33,8 @@ app.post("/api/tasks", (req, res) => {
             id: this.lastID,
             title,
             description,
-            due_date,
-            create_date: new Date().toISOString() // Sending the creation date in ISO format
+            dueDate,
+            createDate: new Date().toISOString() // Sending the creation date in ISO format
           });
         }
       }
@@ -43,8 +43,8 @@ app.post("/api/tasks", (req, res) => {
 
 // Update a task
 app.put("/api/tasks/:id", (req, res) => {
-    const { title, description, due_date } = req.body;
-    const updateFields = { title, description, due_date };
+    const { title, description, dueDate } = req.body;
+    const updateFields = { title, description, dueDate };
     const updates = [];
     const values = [];
   
@@ -58,7 +58,7 @@ app.put("/api/tasks/:id", (req, res) => {
   
     // If no fields to update, return an error
     if (updates.length === 0) {
-      return res.status(400).json({ error: "At least one field (title, description, due_date) must be provided for update." });
+      return res.status(400).json({ error: "At least one field (title, description, dueDate) must be provided for update." });
     }
   
     // Build final SQL query
