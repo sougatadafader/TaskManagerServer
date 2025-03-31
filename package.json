@@ -1,0 +1,23 @@
+{
+  "name": "taskmanagerserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server/server.js",
+    "dev": "nodemon ./src/server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "react-bootstrap": "^2.10.9"
+  }
+}
